@@ -1,0 +1,26 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Pytest cache and test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment files and credentials
+.env
+*.env
+.secrets/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
