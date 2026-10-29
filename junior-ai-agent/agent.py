@@ -382,8 +382,24 @@ def process_request(request: str) -> Dict[str, Any]:
                 "decision_reason": f"Telemetry shows {service_name} is operating normally; provided troubleshooting tips."
             }
 
-    # Category C: Other / Unsupported Requests
+    # Category C: Other / Polite Greetings or Unsupported Requests
     else:
+        normalized = cleaned_request.lower().strip()
+        greetings = ["hello", "hi", "how are you", "good morning", "good afternoon", "good evening", "hey"]
+        if any(g in normalized for g in greetings):
+            return {
+                "category": "other",
+                "summary": "Polite greeting acknowledged.",
+                "response": (
+                    "Hello! I am your Enterprise Support AI Assistant. I can assist you with company policies, "
+                    "IT service health status, and incident reporting. How may I assist you today?"
+                ),
+                "tools_used": [],
+                "confidence": 0.90,
+                "human_review_required": False,
+                "decision_reason": "Politely acknowledged user greeting."
+            }
+
         return {
             "category": "other",
             "summary": "Unsupported or out-of-scope request.",
